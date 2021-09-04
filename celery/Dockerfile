@@ -1,4 +1,4 @@
-FROM python:3.6.5
+FROM python:3.8.2
 
 RUN mkdir -p /app
 WORKDIR /app
@@ -11,4 +11,4 @@ RUN pip install -r requirements.txt
 
 ADD ./flask-base-api/ /app/
 
-ENTRYPOINT celery -A project.celery worker --loglevel=INFO -E
+ENTRYPOINT celery -A project.celery worker --loglevel=INFO --pool=prefork -E
